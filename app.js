@@ -14,7 +14,7 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 
-cron.schedule('* * * * *', async function() {
+cron.schedule('0,30 * * * *', async function() {
     const con = await mysql.createPool({
       host: process.env.DB_HOST_DOLIBARR,
       user: process.env.DB_USER_DOLIBARR,
