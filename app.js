@@ -16,9 +16,9 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 
-// fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
-//   console.log("got reponse: "+ res.statusCode)
-// })
+fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
+  console.log("got reponse: "+ res.statusCode)
+})
 
 cron.schedule('* * * * *', async function() {
     const con = await mysql.createPool({
