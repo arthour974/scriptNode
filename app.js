@@ -1,11 +1,13 @@
-var express = require('express');
+const express = require('express');
 const ObjectsToCsv = require('objects-to-csv')
-let ftp = require('basic-ftp');
+const ftp = require('basic-ftp');
 const cron = require('node-cron');
 const mysql = require('mysql');
 require('dotenv').config()
+const http = require('http');
+const request = require('request')
+const fixieUrl = request.defaults({'proxy':process.env.FIXIE_URL})
 
-var http = require('http');
 var server = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var message = 'It works!\n',
@@ -14,7 +16,11 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 
-cron.schedule('0,30 * * * *', async function() {
+// fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
+//   console.log("got reponse: "+ res.statusCode)
+// })
+
+cron.schedule('* * * * *', async function() {
     const con = await mysql.createPool({
       host: process.env.DB_HOST_DOLIBARR,
       user: process.env.DB_USER_DOLIBARR,
@@ -61,4 +67,4 @@ cron.schedule('0,30 * * * *', async function() {
       }
     });
 });
-server.listen();
+server.listen(process.env.PORT || 5000);
