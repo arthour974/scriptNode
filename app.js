@@ -20,7 +20,7 @@ fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
   console.log("got reponse: "+ res.statusCode)
 })
 
-cron.schedule('* * * * *', async function() {
+cron.schedule('*/5 * * * *', async function() {
     const con = await mysql.createPool({
       host: process.env.DB_HOST_DOLIBARR,
       user: process.env.DB_USER_DOLIBARR,
