@@ -5,8 +5,7 @@ const cron = require('node-cron');
 const mysql = require('mysql');
 require('dotenv').config()
 const http = require('http');
-const request = require('request')
-const fixieUrl = request.defaults({'proxy':process.env.FIXIE_URL})
+
 
 var server = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -16,9 +15,7 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 
-fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
-  console.log("got reponse: "+ res.statusCode)
-  cron.schedule('*/5 * * * *', async function() {
+  cron.schedule('* * * * *', async function() {
       const con = await mysql.createPool({
         host: process.env.DB_HOST_DOLIBARR,
         user: process.env.DB_USER_DOLIBARR,
@@ -65,6 +62,5 @@ fixieUrl("https://sheltered-lake-92137.herokuapp.com/", (err, res, body)=>{
         }
       });
   });
-})
 
 server.listen(process.env.PORT || 5000);
