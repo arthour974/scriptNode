@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.14.0",
     "basic-ftp": "^4.6.6",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
