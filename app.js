@@ -41,6 +41,11 @@ cron.schedule('* * * * *',function(){
             var runflatOrNot = 0
             var typeCars = null
             var descTyre = null
+            if(rows[i].p_ref === "2355018PI2713900"){
+              rows[i].p_description = 'Tourisme'
+              console.log(rows[i])
+            }
+
             if(rows[i].p_description.includes("RUNFLAT")){
               runflatOrNot = 1
               typeCars = 'Tourisme'
@@ -56,7 +61,8 @@ cron.schedule('* * * * *',function(){
             } else {
               typeCars = rows[i].p_description
             }
-  
+            
+           
             if(rows[i].extra_brand == "MINERVA"){
               descTyre = "Minerva est une marque privée belge qui a été fondée en 1992. Distribués à l'origine par le groupe allemand Continental, les pneus Minerva sont maintenant produits en Europe et en Asie. La qualité, la valeur et la constance sont les valeurs fondamentales de cette marque exclusive de Canada Tire. Offerts dans un large éventail de produits et de dimensions, les pneus Minerva répondent aux besoins du marché canadien en toutes saisons et pour de multiples usages. Avec plus de 1,5 million de pneus vendus par année, Minerva est une marque leader partout dans le monde et est vendue dans plus de 70 pays sur tous les continents. Autrefois la déesse des automobiles, la marque et le logo de Minerva étaient synonymes de luxe, de performance et de confort. Aujourd’hui, la marque est renommée pour ses pneus de qualité abordables vendus partout dans le monde."
             } else if(rows[i].extra_brand == "NEXEN"){
@@ -122,7 +128,7 @@ cron.schedule('* * * * *',function(){
             } else if(rows[i].extra_brand == "YOKOHAMA"){
               descTyre = "En mettant l'accent sur la production de produits de haute qualité pour améliorer la qualité de vie des personnes et des communautés dans lesquelles elle opère, la société japonaise de pneus premium YOKOHAMA utilise son vaste savoir-faire dans le monde des sports mécaniques, professionnels de haut niveau pour transmettre les avantages dont bénéficient normalement les héros de l'asphalte, des meilleurs championnats professionnels, aux utilisateurs normaux de voitures particulières"
             }
-  
+            
             if(typeCars != "MOTO"){
   
               newCsv.push(
@@ -141,9 +147,21 @@ cron.schedule('* * * * *',function(){
                   Image2: rows[i].extra_newlabel,
                   cat1: typeCars.toUpperCase(),
                   cat2: rows[i].p_note,
-                  cat3:"",
-                  cat4:"",
-                  cat5:"",
+                  attGroup1: "Dimension",
+                  attName1: "Largeur",
+                  attValue1: rows[i].extra_width,
+                  attGroup2: "Dimension",
+                  attName2: "Hauteur",
+                  attValue2: rows[i].extra_height,
+                  attGroup3: "Dimension",
+                  attName3: "Diamétre",
+                  attValue3: rows[i].extra_rim,
+                  attGroup4: "Dimension",
+                  attName4: "Charge",
+                  attValue4: rows[i].extra_loadindex,
+                  attGroup5: "Dimension",
+                  attName5: "Vitesse",
+                  attValue5: rows[i].extra_speed,
                   tyre_width: rows[i].extra_width,
                   tyre_profile: rows[i].extra_height,
                   tyre_diametre: rows[i].extra_rim,
