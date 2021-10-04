@@ -180,7 +180,7 @@ cron.schedule('* * * * *',function(){
             }
             
           }
-          // console.log(newCsv)
+
           const csv = new ObjectsToCsv(newCsv)
           await csv.toDisk('./data/data.csv')
           try {
