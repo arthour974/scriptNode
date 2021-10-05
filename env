@@ -1,0 +1,12 @@
+DB_DATABASE_DOLIABRR = aco974_dolibarr
+DB_DATABASE_PORT = 8889
+DB_HOST_DOLIBARR = 109.234.165.33	
+DB_HOST_FTP = ftp.nootpneus.re	
+DB_PASSWORD_DOLIBARR = soriddatabase79547954
+DB_PASSWORD_FTP = soriddata79547954
+DB_PORT_FTP = 21
+DB_USER_DOLIBARR = aco974_arthur
+DB_USER_FTP = soriddata@nootpneus.re	
+FIXIE_URL = http://fixie:Xoy3c2x91rabosg@velodrome.usefixie.com:80
+PORT = 80
+
